@@ -1,0 +1,9 @@
+.page-footer{
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    left: 60px;
+    right: 60px;
+    bottom: 50px;
+}
