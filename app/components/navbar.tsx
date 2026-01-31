@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { IoMenu, IoClose } from 'react-icons/io5';
 import Link from 'next/link';
 import { navigationData, socialData } from '../data/navData';
@@ -28,7 +28,7 @@ const Navbar = () => {
   });
 
   // Animation variants
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { y: '100%' },
     visible: {
       y: 0,
@@ -46,7 +46,7 @@ const Navbar = () => {
     },
   };
 
-  const navbarVariants = {
+  const navbarVariants: Variants = {
     hidden: { y: '-100%', opacity: 0 },
     visible: {
       y: 0,
@@ -59,7 +59,7 @@ const Navbar = () => {
     },
   };
 
-  const listItemVariants = {
+  const listItemVariants: Variants = {
     hidden: { y: '100%' },
     visible: (i: number) => ({
       y: 0,
@@ -71,14 +71,14 @@ const Navbar = () => {
     }),
   };
 
-  const footerVariants = {
+  const footerVariants: Variants = {
     hidden: { y: '100%', opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
         duration: 0.5,
-        delay: 1.0,
+        delay: 1,
         ease: 'easeOut',
       },
     },
@@ -142,7 +142,8 @@ const Navbar = () => {
                 >
                   <motion.div
                     className="close"
-                    whileHover={{ color: '#000' }}
+                    onHoverStart={() => ({ color: '#000' })}
+                    onHoverEnd={() => ({ color: '#fff' })}
                   >
                     <IoClose />
                   </motion.div>
