@@ -35,5 +35,19 @@ export const carouselData = [
     description:
       'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit, commodi, eum minus quaerat eos delectus consequuntur, sed ullam accusantium odio amet at nihil ex tempore alias sapiente.',
   },
-   
+];
+
+export const infoData = [
+  {
+    bold: 'nigeria',
+    light: 'anambra state',
+  },
+  {
+    bold: 'available all around',
+    light: 'worldwide',
+  },
+  {
+    bold: 'video editor',
+    light: '+Voice Artist',
+  },
 ];

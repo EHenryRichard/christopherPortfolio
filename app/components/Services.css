@@ -1,0 +1,166 @@
+/* 1. Main Section & Background */
+.service {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* Changed from 500px to allow scrolling */
+  background-color: #09090b;
+  background-image:
+    linear-gradient(45deg, #0f0f12 25%, transparent 25%),
+    linear-gradient(-45deg, #0f0f12 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #0f0f12 75%),
+    linear-gradient(-45deg, transparent 75%, #0f0f12 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+  background-attachment: fixed;
+  padding: 100px 50px 30px 50px;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+/* 2. Top Header Layout */
+.service-container-text {
+  display: flex;
+  align-items: flex-end; /* Aligns description text to the bottom of the big titles */
+  justify-content: space-between;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+.service-container-text h2 {
+  text-transform: uppercase;
+  font-size: clamp(60px, 10vw, 120px); /* Responsive sizing */
+  margin: 0;
+  line-height: 0.85;
+  /* font-weight: 800; */
+}
+
+.service-container-text .left-text {
+  max-width: 320px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 10px; /* Slight lift to match reference */
+}
+
+/* 3. The Interactive List */
+.service-container-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 45%; /* Pushes the list to the right half */
+  box-sizing: border-box;
+}
+
+.service-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 40px;
+  align-items: center;
+  padding: 25px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.service-row:hover {
+  opacity: 0.6;
+}
+
+.service-num {
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.service-info h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+  letter-spacing: -0.01em;
+}
+
+.service-info p {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+}
+
+.service-icon {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.5);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.service-icon.rotated {
+  transform: rotate(180deg);
+}
+
+/* 4. Expanded List Content */
+.service-expand {
+  overflow: hidden;
+}
+
+.expand-content {
+  padding: 0 0 30px 80px; /* Aligns text perfectly with the Titles */
+}
+
+.expand-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.expand-content li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.feature-icon {
+  font-size: 1rem;
+  color: #fff; /* Bright icons like your 3rd image */
+  flex-shrink: 0;
+}
+
+.feature-text {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1;
+}
+
+.bottom-line {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 5. Mobile Adjustments */
+@media (max-width: 1024px) {
+  .service-container-list {
+    padding-left: 20%;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-container-text {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .service-container-list {
+    padding-left: 0;
+  }
+  
+  .service {
+    padding: 40px 30px;
+    margin: 0px 0px -70px 0px;
+  }
+}

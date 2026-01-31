@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
-import { carouselData } from '../data/heroData';
+import { GeoAlt, Globe, PatchCheck } from 'react-bootstrap-icons';
+import { carouselData, infoData } from '../data/heroData';
 import './Hero.css';
 
 const Hero = () => {
@@ -63,66 +64,91 @@ const Hero = () => {
   const thumbnailItems = [...items.slice(1), items[0]];
 
   return (
-    <section id="home" className={`carousel ${animating || ''}`}>
-      <div className="list">
-        {items.map((item, index) => (
-          <div className="item" key={item.id} data-index={index}>
-            <div className="img-wrapper">
-              <Image
-                src={item.image}
-                alt={item.title}
-                fill
-                style={{ objectFit: 'cover' }}
-                priority={index === 0}
-                sizes="100vw"
-              />
-              <div className="img-overlay"></div>
-            </div>
-            <div className="content">
-              <div className="author">{item.author}</div>
-              <div className="title">{item.title}</div>
-              <div className="topic">{item.topic}</div>
-              <div className="des">{item.description}</div>
-              <div className="buttons">
-                {/* <button>SEE MORE</button> */}
-                <button>SEE MORE</button>
+    <>
+      <section id="home" className={`carousel ${animating || ''}`}>
+        <div className="list">
+          {items.map((item, index) => (
+            <div className="item" key={item.id} data-index={index}>
+              <div className="img-wrapper">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  priority={index === 0}
+                  sizes="100vw"
+                />
+                <div className="img-overlay"></div>
+              </div>
+              <div className="content">
+                <div className="author">{item.author}</div>
+                <div className="title">{item.title}</div>
+                <div className="topic">{item.topic}</div>
+                <div className="des">{item.description}</div>
+                <div className="buttons">
+                  {/* <button>SEE MORE</button> */}
+                  <button>SEE MORE</button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      <div className="thumbnail">
-        {thumbnailItems.map((item) => (
-          <div className="item" key={`thumb-${item.id}`}>
-            <img src={item.image} alt={item.title} />
-            <div className="content">
-              <div className="title">{item.title}</div>
-              <div className="des">{item.topic}</div>
+        <div className="thumbnail">
+          {thumbnailItems.map((item) => (
+            <div className="item" key={`thumb-${item.id}`}>
+              <img src={item.image} alt={item.title} />
+              <div className="content">
+                <div className="title">{item.title}</div>
+                <div className="des">{item.topic}</div>
+              </div>
             </div>
-          </div>
+          ))}
+        </div>
+
+        <div className="arrows">
+          <button
+            id="prev"
+            onClick={() => showSlider('prev')}
+            disabled={!!animating}
+          >
+            &lt;
+          </button>
+          <button
+            id="next"
+            onClick={() => showSlider('next')}
+            disabled={!!animating}
+          >
+            &gt;
+          </button>
+        </div>
+
+        <div className="time"></div>
+      </section>
+
+      <section className="info-bar">
+        {infoData.map((info, index) => (
+          <React.Fragment key={index}>
+            <div className="info-item">
+              {index === 0 && (
+                <GeoAlt className="info-icon location text-[25px]! hover:text-white! transition-colors cursor-pointer" />
+              )}
+              {index === 1 && (
+                <Globe className="info-icon globe text-[25px]! hover:text-[#4ade80]! transition-colors cursor-pointer" />
+              )}
+              {index === 2 && (
+                <PatchCheck className="info-icon checkmark text-[25px]! hover:text-white! transition-colors cursor-pointer" />
+              )}
+              <div className="info-text">
+                <span className="info-title">{info.bold}</span>
+                <span className="info-subtitle">{info.light}</span>
+              </div>
+            </div>
+            {index < infoData.length - 1 && <div className="info-separator"></div>}
+          </React.Fragment>
         ))}
-      </div>
-
-      <div className="arrows">
-        <button
-          id="prev"
-          onClick={() => showSlider('prev')}
-          disabled={!!animating}
-        >
-          &lt;
-        </button>
-        <button
-          id="next"
-          onClick={() => showSlider('next')}
-          disabled={!!animating}
-        >
-          &gt;
-        </button>
-      </div>
-
-      <div className="time"></div>
-    </section>
+      </section>
+    </>
   );
 };
 

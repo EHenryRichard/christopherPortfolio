@@ -1,0 +1,146 @@
+.portfolio-section {
+  width: 100%;
+  padding: 140px 50px;
+  background-color: #09090b;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.portfolio-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* === Filter Bar === */
+.portfolio-filter-bar {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 100px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 15px;
+}
+
+.filter-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  padding: 10px 0;
+}
+
+.filter-text {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.3s ease;
+}
+
+.filter-item.active .filter-text {
+  color: #fff;
+}
+
+.filter-underline {
+  position: absolute;
+  bottom: -16px; /* Sits exactly on the border-bottom */
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+}
+
+/* === Grid: 2 Columns Wide === */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 80px 40px; /* Large vertical gap for text */
+}
+
+.portfolio-card {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.portfolio-img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10; /* Wide cinematic ratio */
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #121214;
+  cursor: pointer;
+}
+
+.portfolio-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Hover Effects */
+.portfolio-card:hover .portfolio-img {
+  transform: scale(1.05);
+}
+
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.portfolio-overlay span {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid #fff;
+  padding: 12px 24px;
+}
+
+.portfolio-card:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+/* === Typography Below Image === */
+.portfolio-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item-category {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
+.item-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* === Mobile Adjustments === */
+@media (max-width: 900px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr; /* Stack on mobile */
+  }
+  .portfolio-section {
+    padding: 80px 20px;
+  }
+}

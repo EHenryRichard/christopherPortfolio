@@ -1,6 +1,6 @@
 /* Hero Carousel - scoped selectors to avoid conflicts */
 .carousel {
-  width: 100vw;
+  width: 100%;
   height: calc(100vh - 160px);
   overflow: hidden;
   position: relative;
@@ -144,7 +144,7 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  z-index: 100;
+  z-index: 90;
 }
 
 .carousel .arrows button {
@@ -324,11 +324,208 @@
 }
 
 /* Responsive */
-@media screen and (max-width: 678px) {
+@media screen and (max-width: 768px) {
   .carousel .list .item .content {
     padding-right: 0;
+    max-width: 90%;
+    top: 10%;
+  }
+
+  .carousel .list .item .content .author {
+    font-size: 4em;
   }
   .carousel .list .item .content .title {
-    font-size: 30px;
+    font-size: 4em;
+  }
+
+  .carousel .list .item .content .topic {
+    font-size: 4em;
+  }
+
+  .carousel .list .item .content .des {
+    font-size: 1.9rem;
+  }
+
+  /* Make thumbnails visible and scrollable on mobile */
+  .carousel .thumbnail {
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    transform: none !important;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 20px 10px 20px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    box-sizing: border-box;
+  }
+
+  .carousel .thumbnail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel .thumbnail .item {
+    width: 100px;
+    height: 150px;
+  }
+
+  /* Adjust arrows position for mobile */
+  .carousel .arrows {
+    top: auto;
+    bottom: 250px;
+    right: 50%;
+    transform: translateX(calc(50% + 40px));
+    width: 100px;
+    max-width: 100%;
+  }
+
+  .carousel .arrows button {
+    width: 35px;
+    height: 35px;
+    font-size: medium;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .carousel .list .item .content .title,
+  .carousel .list .item .content .author,
+  .carousel .list .item .content .topic {
+    font-size: 2.5em;
+  }
+ .carousel .list .item .content .des {
+    font-size: 0.9rem;
+  }
+
+  .carousel .thumbnail .item {
+    width: 80px;
+    height: 120px;
+  }
+}
+
+/* Specific fix for iPhone 14 Pro and similar sized devices */
+@media screen and (min-width: 375px) and (max-width: 430px) {
+  .carousel .arrows {
+    bottom: 213px;
+
+    transform: translateX(calc(50% + 20px));
+  }
+}
+
+/* Info Bar Section */
+.info-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #09090b;
+  background-image:
+    linear-gradient(45deg, #0f0f12 25%, transparent 25%),
+    linear-gradient(-45deg, #0f0f12 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #0f0f12 75%),
+    linear-gradient(-45deg, transparent 75%, #0f0f12 75%);
+  background-size: 8px 8px;
+  background-position:
+    0 0,
+    0 4px,
+    4px -4px,
+    -4px 0px;
+  background-attachment: fixed;
+  padding: 40px 60px;
+  padding-bottom: 50px;
+  width: 100%;
+  position: relative;
+}
+
+.info-bar::after {
+  content: '';
+  position: absolute;
+  bottom: 30px;
+  left: 60px;
+  right: 60px;
+  height: 1px;
+  background-color: #1e1e1e;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+/* .info-separator {
+  width: 1px;
+  height: 100%;
+  min-height: 120px;
+  background-color: #333;
+  position: relative;
+  align-self: stretch;
+  margin-bottom: -20px;
+      margin-left: 155px;
+    margin-right: 181px;
+} */
+
+/* .info-icon {
+  width: 40px;
+  height: 40px;
+} */
+
+.info-icon.location {
+  color: #4ade80;
+}
+
+.info-icon.globe {
+  color: #ffffff;
+}
+
+.info-icon.checkmark {
+  color: #3b82f6;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-title {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+}
+
+.info-subtitle {
+  color: #9ca3af;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 768px) {
+  .info-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 40px 20px;
+    padding-bottom: 40px;
+  }
+
+  .info-bar::after {
+    display: none;
+  }
+
+  .info-item {
+    width: 100%;
+    padding: 25px 0;
+    border-bottom: 1px solid #1e1e1e;
+    align-items: center;
+    text-align: center;
+  }
+
+  .info-item:last-child {
+    border-bottom: none;
   }
 }

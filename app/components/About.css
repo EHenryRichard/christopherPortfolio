@@ -1,0 +1,184 @@
+.about-section {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #09090b;
+  background-image:
+    linear-gradient(45deg, #0f0f12 25%, transparent 25%),
+    linear-gradient(-45deg, #0f0f12 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #0f0f12 75%),
+    linear-gradient(-45deg, transparent 75%, #0f0f12 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+  background-attachment: fixed;
+  padding: 140px 50px;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+.about-main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* === Dual Column Header Grid === */
+.about-header-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Equal split */
+  gap: 80px;
+  margin-bottom: 140px;
+}
+
+.header-column {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/* LEFT COLUMN: Image is smaller and more subtle */
+.secondary-img {
+  width: 70%; /* Smaller than the right one for contrast */
+  aspect-ratio: 1 / 1; /* Square crop */
+  border-radius: 12px;
+  opacity: 0.6; /* Slight fade to keep focus on titles */
+}
+
+/* RIGHT COLUMN: Image is large and impactful */
+.primary-img {
+  width: 100%;
+  aspect-ratio: 4 / 5; /* Tall portrait */
+  border-radius: 16px;
+}
+
+/* Image Wrapper Shared Style */
+.about-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-image {
+  object-fit: cover;
+}
+
+/* Typography Alignment */
+.massive-title {
+  font-size: clamp(40px, 6vw, 90px);
+  line-height: 0.85;
+  text-transform: uppercase;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+
+.about-description {
+  font-size: 1.1rem;
+  max-width: 400px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+/* === Process List remains pushed to the right === */
+.about-process-list {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding-left: 50%; /* Lines up perfectly with the right column */
+}
+
+.process-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 20px;
+}
+
+/* ... (rest of your process-dots and process-text styles) ... */
+
+/* Mobile Fixes */
+@media (max-width: 1024px) {
+  .about-section {
+    padding: 80px 30px;
+  }
+
+  .about-header-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .about-process-list {
+    padding-left: 0;
+  }
+
+  /* Keep both images visible on tablet/mobile */
+  .secondary-img {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .primary-img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 60px 20px;
+  }
+
+  .about-header-grid {
+    gap: 40px;
+    margin-bottom: 80px;
+  }
+
+  .header-column {
+    gap: 30px;
+  }
+
+  /* Show both images side by side on mobile */
+  .left-col {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .secondary-img {
+    width: 40%;
+    opacity: 0.8;
+  }
+
+  .titles-wrapper {
+    flex: 1;
+  }
+
+  .massive-title {
+    font-size: clamp(28px, 8vw, 50px);
+  }
+
+  .about-description {
+    font-size: 0.95rem;
+  }
+
+  .process-row {
+    grid-template-columns: 60px 1fr;
+    gap: 15px;
+  }
+
+  .about-process-list {
+    gap: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Stack images vertically on very small screens */
+  .left-col {
+    flex-direction: column;
+  }
+
+  .secondary-img {
+    width: 60%;
+  }
+
+  .massive-title {
+    font-size: clamp(24px, 7vw, 40px);
+  }
+}

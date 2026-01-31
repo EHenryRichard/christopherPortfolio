@@ -1,15 +1,15 @@
 import React from 'react';
-import About from '../components/About';
+import Services from '../components/Services';
 import Footer from '../components/FooterComponent';
 import Navbar from '../components/navbar';
-const page = () => {
+const ServicesPage = () => {
     return (
       <>
         <Navbar />
-        <About />
+        <Services />
         <Footer />
       </>
     );
 };
 
-export default page;
+export default ServicesPage;

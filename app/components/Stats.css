@@ -1,0 +1,121 @@
+/* Stats Section */
+.stats-section {
+  position: relative;
+  width: 100%;
+  min-height: 40vh; /* Reduced from 60vh to match the photo's compact look */
+  background-color: #09090b;
+  background-image:
+    linear-gradient(45deg, #0f0f12 25%, transparent 25%),
+    linear-gradient(-45deg, #0f0f12 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #0f0f12 75%),
+    linear-gradient(-45deg, transparent 75%, #0f0f12 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+  background-attachment: fixed;
+  padding: 100px 60px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stats-container {
+  display: grid;
+  /* Changed to 3 columns to match your active data and spread to the ends */
+  grid-template-columns: 60px 1fr 60px;
+  gap: 80px ;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative; /* Required for the absolute separator lines */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.stat-item.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stat-value {
+  font-size: clamp(50px, 7vw, 90px); /* Slightly tighter font size */
+  font-weight: 500; /* Clean, medium weight like the photo */
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: baseline;
+}
+
+.stat-suffix {
+  font-size: 0.5em;
+  color: #f1683a; /* Your brand orange */
+  margin-left: 4px;
+  font-weight: 400;
+}
+
+.stat-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.5); /* Muted gray label */
+  font-weight: 500;
+  max-width: 120px; /* Forces label into two lines like the photo */
+  line-height: 1.4;
+}
+
+/* Separator lines: Perfectly centered between items */
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0; /* Align to the edge of the grid cell */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1); /* Subtle vertical line */
+}
+
+/* Hover effect */
+.stat-item:hover .stat-value {
+  color: #f1683a;
+  transition: color 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .stats-container {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-section {
+    padding: 0px 20px 30px 0px;
+  }
+
+  .stats-container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .stat-item:not(:last-child)::after {
+    /* Change horizontal line to vertical on mobile if needed, or hide */
+    display: none;
+  }
+
+  .stat-value {
+    font-size: 90px;
+  }
+  .stat-label{
+    font-size: 15px;
+  }
+}

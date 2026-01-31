@@ -1,14 +1,14 @@
 import React from 'react';
-import Contact from '../components/Contact';
+import Experience from '../components/Experience';
 import Footer from '../components/FooterComponent';
 import Navbar from '../components/navbar';
 
 const page = () => {
   return (
     <>
-    <Navbar />
-      <Contact />
-    <Footer />
+      <Navbar />
+      <Experience />
+      <Footer />
     </>
   );
 };
