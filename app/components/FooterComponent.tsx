@@ -28,7 +28,7 @@ const FooterComponent = memo(() => {
 
   return (
     <div className="page-footer">
-      <div>©2025 Xolio DESIGN</div>
+      <div>©2025 Narrative by Topher — Crafted with intention. Every frame. Every word.</div>
       <div
         className={`back-to-top ${showBackToTop ? 'visible' : ''}`}
         onClick={scrollToTop}

@@ -27,14 +27,14 @@ const About = () => {
             >
               <Image
                 src={imgTwo}
-                alt="Christopher Detail"
+                alt="Topher Detail"
                 fill
                 className="about-image"
               />
             </motion.div>
 
             <div className="titles-wrapper">
-              <h1 className="massive-title">I'M Christopher</h1>
+              <h1 className="massive-title">NARRATIVE BY TOPHER</h1>
               <h1 className="massive-title">BASED IN Anambra,</h1>
               <div className="title-with-accent">
                 <h1 className="massive-title">NIGERIA.</h1>
@@ -54,7 +54,7 @@ const About = () => {
             >
               <Image
                 src={imgOne}
-                alt="Christopher Profile"
+                alt="Topher Profile"
                 fill
                 className="about-image"
                 priority
@@ -62,9 +62,10 @@ const About = () => {
             </motion.div>
 
             <p className="about-description">
-              I employed responsive design skills to maintain consistency across
-              all devices, ensuring pixel-perfect execution from concept to
-              deployment.
+              Video editor and voice artist based in Anambra, Nigeria. I build
+              stories from raw footage — shaping narrative, pacing, and sound
+              into content that moves people and represents brands with
+              intention.
             </p>
           </div>
         </div>
