@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { IoMenu, IoClose } from 'react-icons/io5';
 import Link from 'next/link';
-import Image from 'next/image';
 import { navigationData, socialData } from '../data/navData';
 import './navbar.css';
 
@@ -91,7 +90,7 @@ const Navbar = () => {
       <header>
         <nav className="navbar">
           <div className="nav-left">
-            <Image src="/images/logo.jpg" alt="Narrative by Topher" width={40} height={40} className="nav-logo" />
+            <span className="label">local/</span>
             <span className="time">{formattedTime}</span>
           </div>
 
