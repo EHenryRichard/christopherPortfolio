@@ -11,18 +11,27 @@ const Contact = () => {
     subject: '',
     message: '',
   });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Add your form submission logic here
+    setStatus('sending');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error();
+      setStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -108,8 +117,16 @@ const Contact = () => {
                 required
               />
             </div>
-            <button type="submit" className="submit-btn">
-              <span>Send Message</span>
+
+            {status === 'success' && (
+              <p className="form-feedback success">Message sent! I'll get back to you soon.</p>
+            )}
+            {status === 'error' && (
+              <p className="form-feedback error">Something went wrong. Please try again or email me directly.</p>
+            )}
+
+            <button type="submit" className="submit-btn" disabled={status === 'sending'}>
+              <span>{status === 'sending' ? 'Sending...' : 'Send Message'}</span>
               <Send />
             </button>
           </form>

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { GeoAlt, Globe, PatchCheck } from 'react-bootstrap-icons';
 import { carouselData, infoData } from '../data/heroData';
 import './Hero.css';
@@ -86,8 +87,7 @@ const Hero = () => {
                 <div className="topic">{item.topic}</div>
                 <div className="des">{item.description}</div>
                 <div className="buttons">
-                  {/* <button>SEE MORE</button> */}
-                  <button>SEE MORE</button>
+                  <Link href="/portfolio"><button>SEE MORE</button></Link>
                 </div>
               </div>
             </div>

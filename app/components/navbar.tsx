@@ -104,13 +104,15 @@ const Navbar = () => {
               <IoMenu />
             </motion.div>
           </div>
-          <motion.button
-            className="contact-btn"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            contact now
-          </motion.button>
+          <Link href="/contact">
+            <motion.button
+              className="contact-btn"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              contact now
+            </motion.button>
+          </Link>
         </nav>
       </header>
 
@@ -186,7 +188,7 @@ const Navbar = () => {
               initial="hidden"
               animate="visible"
             >
-              <div className="rights">©2025 Narrative by Topher</div>
+              <div className="rights">©2025 Narratives by Topher</div>
               <div className="socials">
                 <ul>
                   {socialData.map((social, index) => (
