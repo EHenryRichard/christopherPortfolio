@@ -8,7 +8,7 @@ export const navigationData = [
 ];
 
 export const socialData = [
-  { name: 'instagram', href: '#instagram' },
+  { name: 'instagram', href: 'https://www.instagram.com/godnobunaga' },
   { name: 'dribble', href: '#dribble' },
   { name: 'tiktok', href: 'https://www.tiktok.com/@tophersnarratives' },
 ];

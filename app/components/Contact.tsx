@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Send, Linkedin, Github } from 'react-bootstrap-icons';
+import { Send, Instagram } from 'react-bootstrap-icons';
 import './Contact.css';
 
 const Contact = () => {
@@ -55,11 +55,8 @@ const Contact = () => {
             <div className="info-item">
               <h3>Follow</h3>
               <div className="social-links">
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                  <Linkedin />
-                </a>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-                  <Github />
+                <a href="https://www.instagram.com/godnobunaga" target="_blank" rel="noopener noreferrer">
+                  <Instagram />
                 </a>
                 <a href="https://www.tiktok.com/@tophersnarratives" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
                   <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
