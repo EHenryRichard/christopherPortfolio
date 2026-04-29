@@ -2,38 +2,38 @@ export const carouselData = [
   {
     id: 1,
     image: '/images/img-1.jpeg',
-    author: 'Chris',
+    author: 'Topher',
     title: 'Creative',
-    topic: 'Designer',
+    topic: 'Editor',
     description:
-      'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit, commodi, eum minus quaerat eos delectus consequuntur, sed ullam accusantium odio amet at nihil ex tempore alias sapiente.',
+      'Every frame tells a story. I craft cinematic video experiences that don\'t just look good — they feel right. From the first cut to the final export, I bring intention to every second of screen time.',
   },
   {
     id: 2,
     image: '/images/img-2.jpeg',
-    author: 'Chris',
+    author: 'Topher',
     title: 'Brand',
     topic: 'Identity',
     description:
-      'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit, commodi, eum minus quaerat eos delectus consequuntur, sed ullam accusantium odio amet at nihil ex tempore alias sapiente.',
+      'Your brand has a voice — I help it speak. Through motion graphics, purposeful pacing, and sharp visual language, I translate who you are into content people remember long after they\'ve scrolled past.',
   },
   {
     id: 3,
     image: '/images/img-3.jpeg',
-    author: 'Chris',
+    author: 'Topher',
     title: 'Visual',
     topic: 'Storytelling',
     description:
-      'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit, commodi, eum minus quaerat eos delectus consequuntur, sed ullam accusantium odio amet at nihil ex tempore alias sapiente.',
+      'Great editing is invisible. The best stories don\'t feel edited — they feel lived. I build narratives that pull viewers in, hold their attention, and leave them wanting more.',
   },
   {
     id: 4,
     image: '/images/img-4.jpeg',
-    author: 'Chris',
+    author: 'Topher',
     title: 'Digital',
     topic: 'Experience',
     description:
-      'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit, commodi, eum minus quaerat eos delectus consequuntur, sed ullam accusantium odio amet at nihil ex tempore alias sapiente.',
+      'With 60+ projects delivered and a track record across Nigerian brands and global teams, I create digital content that doesn\'t just fill a timeline — it moves people.',
   },
 ];
 
@@ -43,7 +43,7 @@ export const infoData = [
     light: 'anambra state',
   },
   {
-    bold: 'available all around',
+    bold: 'available',
     light: 'worldwide',
   },
   {

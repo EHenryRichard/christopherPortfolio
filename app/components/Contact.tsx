@@ -30,11 +30,11 @@ const Contact = () => {
       <div className="contact-container">
         <div className="contact-header">
           <div className="contact-title">
-            <h2>Let's</h2>
-            <h2>Connect</h2>
+            <h2>Let's Build</h2>
+            <h2>Something</h2>
           </div>
           <div className="contact-subtitle">
-            Have a project in mind? Let's discuss how we can work together.
+            Got a project, a vision, or just a rough idea? Let's talk about how to make it real.
           </div>
         </div>
 
@@ -42,15 +42,15 @@ const Contact = () => {
           <div className="contact-info">
             <div className="info-item">
               <h3>Email</h3>
-              <a href="mailto:hello@xolio.design">hello@xolio.design</a>
+              <a href="mailto:chijinduagoh@gmail.com">chijinduagoh@gmail.com</a>
             </div>
             <div className="info-item">
               <h3>Phone</h3>
-              <a href="tel:+1234567890">+1 (234) 567-890</a>
+              <a href="tel:+2349063504406">+234 906 350 4406</a>
             </div>
             <div className="info-item">
               <h3>Location</h3>
-              <p>San Francisco, CA</p>
+              <p>Anambra State, Nigeria · Available Worldwide</p>
             </div>
             <div className="info-item">
               <h3>Follow</h3>

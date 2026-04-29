@@ -11,10 +11,9 @@ interface StatItem {
 }
 
 const statsData: StatItem[] = [
-  { id: 1, value: '150', label: 'Projects Completed', suffix: '+' },
-  { id: 2, value: '8', label: 'Years Experience', suffix: '+' },
-  { id: 3, value: '98', label: 'Client Satisfaction', suffix: '%' },
-  // { id: 4, value: '45', label: 'Awards Won', suffix: '+' },
+  { id: 1, value: '60', label: 'Projects Completed', suffix: '+' },
+  { id: 2, value: '2', label: 'Years at 7figuria', suffix: '+' },
+  { id: 3, value: '100', label: 'Stories Worth Telling', suffix: '%' },
 ];
 
 const Stats = () => {
