@@ -10,5 +10,5 @@ export const navigationData = [
 export const socialData = [
   { name: 'instagram', href: '#instagram' },
   { name: 'dribble', href: '#dribble' },
-  { name: 'twitter', href: '#twitter' },
+  { name: 'tiktok', href: 'https://www.tiktok.com/@tophersnarratives' },
 ];
