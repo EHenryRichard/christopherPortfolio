@@ -42,10 +42,9 @@ header .navbar .nav-left {
   justify-self: flex-start;
 }
 
-header .navbar .nav-left .label {
-  color: #ffffff99;
-  text-transform: uppercase;
-  font-weight: 600;
+header .navbar .nav-left .nav-logo {
+  border-radius: 4px;
+  object-fit: cover;
 }
 
 header .navbar .nav-left .time {
