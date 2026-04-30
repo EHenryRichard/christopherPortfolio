@@ -151,13 +151,15 @@ const Navbar = () => {
                   </motion.div>
                 </motion.div>
               </div>
-              <motion.button
-                className="contact-btn"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                contact now
-              </motion.button>
+              <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
+                <motion.button
+                  className="contact-btn"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  contact now
+                </motion.button>
+              </Link>
             </motion.div>
 
             <ul className="list">
