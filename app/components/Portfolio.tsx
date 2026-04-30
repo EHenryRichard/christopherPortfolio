@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 import { portfolioItems } from '../data/portfolioData';
@@ -30,7 +30,6 @@ const Portfolio = () => {
   const [radius, setRadius] = useState(260);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showContent, setShowContent] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const update = () => {
@@ -47,7 +46,6 @@ const Portfolio = () => {
   }, [currentIndex]);
 
   const goTo = (index: number) => {
-    if (videoRef.current) videoRef.current.pause();
     setShowContent(false);
     setTimeout(() => setCurrentIndex(index), 300);
   };
@@ -67,21 +65,30 @@ const Portfolio = () => {
         <span className="text-gray-500 text-sm uppercase tracking-widest">Selected Projects</span>
       </div>
 
-      {/* Active project — video + info */}
+      {/* Active project card */}
       <div className="w-full max-w-5xl flex flex-col gap-6">
-        {/* Video player */}
-        <div className="w-full rounded-2xl overflow-hidden" style={{ ...glassStyle, boxShadow: '0 8px 40px rgba(0,0,0,0.5)' }}>
-          <video
-            ref={videoRef}
-            key={currentItem.videoId}
-            src={`/api/video/${currentItem.videoId}`}
-            controls
-            controlsList="nodownload"
-            disablePictureInPicture
-            onContextMenu={(e) => e.preventDefault()}
-            className="w-full block"
-            style={{ maxHeight: '480px', objectFit: 'contain', background: '#000' }}
-          />
+        {/* Project visual card */}
+        <div
+          className="w-full rounded-2xl overflow-hidden flex items-center justify-center"
+          style={{ ...glassStyle, minHeight: '280px', boxShadow: '0 8px 40px rgba(0,0,0,0.5)' }}
+        >
+          <div className="flex flex-col items-center justify-center gap-4 py-16 px-8 text-center">
+            <span className="text-gray-500 text-xs font-mono uppercase tracking-widest">
+              Project {String(currentItem.id).padStart(2, '0')}
+            </span>
+            <h3 className="text-white text-4xl max-[800px]:text-2xl font-bold uppercase">
+              {currentItem.title}
+            </h3>
+            <span className="text-red-400 text-sm uppercase tracking-widest">
+              {currentItem.subtitle}
+            </span>
+            <span
+              className="text-xs text-white uppercase tracking-wider px-4 py-1.5 rounded-full mt-2"
+              style={glassStyle}
+            >
+              {currentItem.category}
+            </span>
+          </div>
         </div>
 
         {/* Project info */}
@@ -95,20 +102,6 @@ const Portfolio = () => {
               transition={{ duration: 0.5 }}
               className="flex flex-col gap-4"
             >
-              {/* Title row */}
-              <div className="flex flex-wrap items-baseline gap-3">
-                <span className="text-gray-500 text-sm font-mono">
-                  {String(currentItem.id).padStart(2, '0')}
-                </span>
-                <h3 className="text-white text-3xl max-[800px]:text-xl font-bold">
-                  {currentItem.title}
-                </h3>
-                <span className="text-red-400 text-sm uppercase tracking-wider">
-                  {currentItem.subtitle}
-                </span>
-              </div>
-
-              {/* Description */}
               <p className="text-gray-400 text-base leading-relaxed max-w-3xl">
                 {currentItem.description}
               </p>
@@ -126,7 +119,7 @@ const Portfolio = () => {
                 ))}
               </div>
 
-              {/* Meta row */}
+              {/* Meta */}
               <div className="flex flex-wrap gap-8 pt-2 border-t border-white/10">
                 <div>
                   <p className="text-gray-500 text-xs uppercase tracking-widest mb-1">Client</p>
@@ -140,10 +133,6 @@ const Portfolio = () => {
                   <p className="text-gray-500 text-xs uppercase tracking-widest mb-1">Services</p>
                   <p className="text-white text-sm">{currentItem.services.join(' · ')}</p>
                 </div>
-                <div>
-                  <p className="text-gray-500 text-xs uppercase tracking-widest mb-1">Category</p>
-                  <p className="text-white text-sm">{currentItem.category}</p>
-                </div>
               </div>
             </motion.div>
           )}
@@ -152,7 +141,6 @@ const Portfolio = () => {
 
       {/* 3D Carousel navigation */}
       <div className="relative flex items-center justify-center w-full mt-4" style={{ height: '220px' }}>
-        {/* Left Arrow */}
         <motion.button
           className="absolute left-10 max-[800px]:left-2 z-20 w-12 h-12 max-[800px]:w-8 max-[800px]:h-8 flex items-center justify-center rounded-full cursor-pointer text-white text-2xl max-[800px]:text-base"
           style={glassStyle}
@@ -163,7 +151,6 @@ const Portfolio = () => {
           <IoChevronBack />
         </motion.button>
 
-        {/* Carousel */}
         <div className="w-[180px] h-[160px] max-[800px]:w-[120px] max-[800px]:h-[110px] relative" style={{ perspective: '1000px' }}>
           <motion.div
             className="w-full h-full relative"
@@ -172,7 +159,6 @@ const Portfolio = () => {
             transition={{ duration: 0.9, ease: 'easeInOut' }}
           >
             {portfolioItems.map((item, index) => {
-              const rotationAngle = (index * 360) / quantity;
               const isActive = index === currentIndex;
               return (
                 <motion.div
@@ -182,7 +168,7 @@ const Portfolio = () => {
                     ...glassStyle,
                     transformStyle: 'preserve-3d',
                     backfaceVisibility: 'hidden',
-                    transform: `rotateY(${rotationAngle}deg) translateZ(${radius}px)`,
+                    transform: `rotateY(${(index * 360) / quantity}deg) translateZ(${radius}px)`,
                     boxShadow: isActive ? '0 0 30px rgba(255,255,255,0.1)' : '0 8px 30px rgba(0,0,0,0.5)',
                   }}
                   animate={{ opacity: isActive ? 1 : 0.45 }}
@@ -200,7 +186,6 @@ const Portfolio = () => {
           </motion.div>
         </div>
 
-        {/* Right Arrow */}
         <motion.button
           className="absolute right-10 max-[800px]:right-2 z-20 w-12 h-12 max-[800px]:w-8 max-[800px]:h-8 flex items-center justify-center rounded-full cursor-pointer text-white text-2xl max-[800px]:text-base"
           style={glassStyle}
