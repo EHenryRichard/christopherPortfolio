@@ -136,6 +136,67 @@
   letter-spacing: -0.01em;
 }
 
+.item-subtitle {
+  font-size: 0.75rem;
+  color: #f87171;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 4px 0 0;
+}
+
+.item-description {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  line-height: 1.6;
+  margin: 10px 0 0;
+}
+
+.item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.item-tag {
+  font-size: 0.7rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.item-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.meta-row {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.meta-label {
+  font-size: 0.65rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  min-width: 60px;
+}
+
+.meta-value {
+  font-size: 0.8rem;
+  color: #e5e7eb;
+}
+
 /* === Mobile Adjustments === */
 @media (max-width: 900px) {
   .portfolio-grid {

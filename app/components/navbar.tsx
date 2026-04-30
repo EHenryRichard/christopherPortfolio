@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { IoMenu, IoClose } from 'react-icons/io5';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { navigationData, socialData } from '../data/navData';
 import './navbar.css';
 
@@ -14,6 +15,7 @@ const Navbar = () => {
   const [time, setTime] = useState(new Date());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('Home');
+  const router = useRouter();
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
@@ -104,15 +106,14 @@ const Navbar = () => {
               <IoMenu />
             </motion.div>
           </div>
-          <Link href="/contact">
-            <motion.button
-              className="contact-btn"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              contact now
-            </motion.button>
-          </Link>
+          <motion.button
+            className="contact-btn"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => router.push('/contact')}
+          >
+            contact now
+          </motion.button>
         </nav>
       </header>
 
@@ -151,15 +152,14 @@ const Navbar = () => {
                   </motion.div>
                 </motion.div>
               </div>
-              <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
-                <motion.button
-                  className="contact-btn"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  contact now
-                </motion.button>
-              </Link>
+              <motion.button
+                className="contact-btn"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => { setIsMenuOpen(false); router.push('/contact'); }}
+              >
+                contact now
+              </motion.button>
             </motion.div>
 
             <ul className="list">

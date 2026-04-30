@@ -1,239 +1,226 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 import { portfolioItems } from '../data/portfolioData';
 
+const bgStyle = {
+  backgroundColor: '#09090b',
+  backgroundImage: `
+    linear-gradient(45deg, #0f0f12 25%, transparent 25%),
+    linear-gradient(-45deg, #0f0f12 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #0f0f12 75%),
+    linear-gradient(-45deg, transparent 75%, #0f0f12 75%)
+  `,
+  backgroundSize: '8px 8px',
+  backgroundPosition: '0 0, 0 4px, 4px -4px, -4px 0px',
+  backgroundAttachment: 'fixed' as const,
+};
+
+const glassStyle = {
+  background: 'rgba(255, 255, 255, 0.05)',
+  backdropFilter: 'blur(20px)',
+  WebkitBackdropFilter: 'blur(20px)',
+  border: '1px solid rgba(255, 255, 255, 0.15)',
+};
+
 const Portfolio = () => {
   const quantity = portfolioItems.length;
-  const [radius, setRadius] = useState(400);
+  const [radius, setRadius] = useState(260);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showContent, setShowContent] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Adjust radius and image size based on screen size
   useEffect(() => {
-    const updateRadius = () => {
-      if (window.innerWidth <= 800) {
-        setRadius(180);
-      } else if (window.innerWidth < 1024) {
-        setRadius(320);
-      } else {
-        setRadius(400);
-      }
+    const update = () => {
+      setRadius(window.innerWidth <= 800 ? 140 : window.innerWidth < 1024 ? 200 : 260);
     };
-
-    updateRadius();
-    window.addEventListener('resize', updateRadius);
-    return () => window.removeEventListener('resize', updateRadius);
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
   }, []);
 
   useEffect(() => {
-    const showTimer = setTimeout(() => {
-      setShowContent(true);
-    }, 1200);
+    const t = setTimeout(() => setShowContent(true), 800);
+    return () => clearTimeout(t);
+  }, [currentIndex]);
 
-    const nextTimer = setTimeout(() => {
-      setShowContent(false);
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % quantity);
-      }, 500);
-    }, 30000);
-
-    return () => {
-      clearTimeout(showTimer);
-      clearTimeout(nextTimer);
-    };
-  }, [currentIndex, quantity]);
+  const goTo = (index: number) => {
+    if (videoRef.current) videoRef.current.pause();
+    setShowContent(false);
+    setTimeout(() => setCurrentIndex(index), 300);
+  };
 
   const currentItem = portfolioItems[currentIndex];
   const currentRotation = -(currentIndex * (360 / quantity));
 
-  const goToPrev = () => {
-    setShowContent(false);
-    setTimeout(() => {
-      setCurrentIndex((prev) => (prev - 1 + quantity) % quantity);
-    }, 300);
-  };
-
-  const goToNext = () => {
-    setShowContent(false);
-    setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % quantity);
-    }, 300);
-  };
-
   return (
     <section
       id="portfolio"
-      className="w-full h-[50vh] overflow-hidden relative flex flex-col items-center justify-center py-15 px-5"
-      style={{
-        backgroundColor: '#09090b',
-        backgroundImage: `
-          linear-gradient(45deg, #0f0f12 25%, transparent 25%),
-          linear-gradient(-45deg, #0f0f12 25%, transparent 25%),
-          linear-gradient(45deg, transparent 75%, #0f0f12 75%),
-          linear-gradient(-45deg, transparent 75%, #0f0f12 75%)
-        `,
-        backgroundSize: '8px 8px',
-        backgroundPosition: '0 0, 0 4px, 4px -4px, -4px 0px',
-        backgroundAttachment: 'fixed',
-      }}
+      className="w-full min-h-screen overflow-hidden relative flex flex-col items-center justify-start pt-16 pb-12 px-5 gap-10"
+      style={bgStyle}
     >
-      {/* Title at top */}
-      <div className="absolute top-33 left-1/2 -translate-x-1/2 z-10 min-h-[60px] px-4 max-[800px]:top-15">
-        <AnimatePresence>
+      {/* Section header */}
+      <div className="w-full max-w-5xl flex items-end justify-between">
+        <h2 className="text-white text-5xl max-[800px]:text-3xl font-bold uppercase">Work</h2>
+        <span className="text-gray-500 text-sm uppercase tracking-widest">Selected Projects</span>
+      </div>
+
+      {/* Active project — video + info */}
+      <div className="w-full max-w-5xl flex flex-col gap-6">
+        {/* Video player */}
+        <div className="w-full rounded-2xl overflow-hidden" style={{ ...glassStyle, boxShadow: '0 8px 40px rgba(0,0,0,0.5)' }}>
+          <video
+            ref={videoRef}
+            key={currentItem.videoId}
+            src={`/api/video/${currentItem.videoId}`}
+            controls
+            controlsList="nodownload"
+            disablePictureInPicture
+            onContextMenu={(e) => e.preventDefault()}
+            className="w-full block"
+            style={{ maxHeight: '480px', objectFit: 'contain', background: '#000' }}
+          />
+        </div>
+
+        {/* Project info */}
+        <AnimatePresence mode="wait">
           {showContent && (
-            <motion.h2
-              className="text-4xl max-[800px]:text-xl font-bold text-white text-center m-0"
-              style={{ textShadow: '0 4px 20px rgba(0, 0, 0, 0.8)' }}
-              initial={{ opacity: 0, y: -30 }}
+            <motion.div
+              key={currentItem.id}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              transition={{ duration: 0.6 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col gap-4"
             >
-              {currentItem.title}
-            </motion.h2>
+              {/* Title row */}
+              <div className="flex flex-wrap items-baseline gap-3">
+                <span className="text-gray-500 text-sm font-mono">
+                  {String(currentItem.id).padStart(2, '0')}
+                </span>
+                <h3 className="text-white text-3xl max-[800px]:text-xl font-bold">
+                  {currentItem.title}
+                </h3>
+                <span className="text-red-400 text-sm uppercase tracking-wider">
+                  {currentItem.subtitle}
+                </span>
+              </div>
+
+              {/* Description */}
+              <p className="text-gray-400 text-base leading-relaxed max-w-3xl">
+                {currentItem.description}
+              </p>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2">
+                {currentItem.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs text-white uppercase tracking-wider px-3 py-1 rounded-full"
+                    style={glassStyle}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Meta row */}
+              <div className="flex flex-wrap gap-8 pt-2 border-t border-white/10">
+                <div>
+                  <p className="text-gray-500 text-xs uppercase tracking-widest mb-1">Client</p>
+                  <p className="text-white text-sm">{currentItem.client}</p>
+                </div>
+                <div>
+                  <p className="text-gray-500 text-xs uppercase tracking-widest mb-1">Year</p>
+                  <p className="text-white text-sm">{currentItem.year}</p>
+                </div>
+                <div>
+                  <p className="text-gray-500 text-xs uppercase tracking-widest mb-1">Services</p>
+                  <p className="text-white text-sm">{currentItem.services.join(' · ')}</p>
+                </div>
+                <div>
+                  <p className="text-gray-500 text-xs uppercase tracking-widest mb-1">Category</p>
+                  <p className="text-white text-sm">{currentItem.category}</p>
+                </div>
+              </div>
+            </motion.div>
           )}
         </AnimatePresence>
       </div>
 
-      {/* Active image container/frame with blur effect - behind the carousel */}
-      <div
-        className="absolute left-1/2 top-103 max-[800px]:top-1/2 -translate-x-1/2 -translate-y-1/2 w-97 h-150 max-[800px]:w-48 max-[800px]:h-80 z-0 pointer-events-none rounded-3xl"
-        style={{
-          background: 'rgba(255, 255, 255, 0.15)',
-          backdropFilter: 'blur(25px)',
-          WebkitBackdropFilter: 'blur(25px)',
-          border: '1px solid rgba(255, 255, 255, 0.3)',
-          boxShadow:
-            '0 8px 32px rgba(255, 255, 255, 0.1), inset 0 0 60px rgba(255, 255, 255, 0.1)',
-        }}
-      />
-
-      {/* 3D Carousel wrapper */}
-      <div
-        className="w-[200px] h-55 max-[800px]:w-[120px] max-[800px]:h-[180px] relative z-10"
-        style={{ perspective: '1000px' }}
-      >
-        <motion.div
-          className="w-full h-full relative"
-          style={{
-            transformStyle: 'preserve-3d',
-            transform: 'rotateX(-10deg)',
-          }}
-          animate={{
-            rotateY: currentRotation,
-          }}
-          transition={{
-            duration: 1,
-            ease: 'easeInOut',
-          }}
+      {/* 3D Carousel navigation */}
+      <div className="relative flex items-center justify-center w-full mt-4" style={{ height: '220px' }}>
+        {/* Left Arrow */}
+        <motion.button
+          className="absolute left-10 max-[800px]:left-2 z-20 w-12 h-12 max-[800px]:w-8 max-[800px]:h-8 flex items-center justify-center rounded-full cursor-pointer text-white text-2xl max-[800px]:text-base"
+          style={glassStyle}
+          onClick={() => goTo((currentIndex - 1 + quantity) % quantity)}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
         >
-          {portfolioItems.map((item, index) => {
-            const rotationAngle = (index * 360) / quantity;
-            const isActive = index === currentIndex;
+          <IoChevronBack />
+        </motion.button>
 
-            return (
-              <motion.div
-                key={item.id}
-                className="absolute w-[200px] h-[280px] max-[800px]:w-[120px] max-[800px]:h-[180px] left-0 top-0"
-                style={{
-                  transformStyle: 'preserve-3d',
-                  backfaceVisibility: 'hidden',
-                  transform: `rotateY(${rotationAngle}deg) translateZ(${radius}px)`,
-                }}
-                animate={{
-                  filter: isActive ? 'blur(0px)' : 'blur(2px)',
-                  opacity: isActive ? 1 : 0.6,
-                }}
-                transition={{ duration: 0.5 }}
-              >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover rounded-2xl max-[800px]:rounded-xl"
-                  style={{ boxShadow: '0 15px 50px rgba(0, 0, 0, 0.6)' }}
-                />
-              </motion.div>
-            );
-          })}
-        </motion.div>
+        {/* Carousel */}
+        <div className="w-[180px] h-[160px] max-[800px]:w-[120px] max-[800px]:h-[110px] relative" style={{ perspective: '1000px' }}>
+          <motion.div
+            className="w-full h-full relative"
+            style={{ transformStyle: 'preserve-3d', transform: 'rotateX(-8deg)' }}
+            animate={{ rotateY: currentRotation }}
+            transition={{ duration: 0.9, ease: 'easeInOut' }}
+          >
+            {portfolioItems.map((item, index) => {
+              const rotationAngle = (index * 360) / quantity;
+              const isActive = index === currentIndex;
+              return (
+                <motion.div
+                  key={item.id}
+                  className="absolute w-[180px] h-[160px] max-[800px]:w-[120px] max-[800px]:h-[110px] left-0 top-0 rounded-xl cursor-pointer flex flex-col justify-between p-4"
+                  style={{
+                    ...glassStyle,
+                    transformStyle: 'preserve-3d',
+                    backfaceVisibility: 'hidden',
+                    transform: `rotateY(${rotationAngle}deg) translateZ(${radius}px)`,
+                    boxShadow: isActive ? '0 0 30px rgba(255,255,255,0.1)' : '0 8px 30px rgba(0,0,0,0.5)',
+                  }}
+                  animate={{ opacity: isActive ? 1 : 0.45 }}
+                  transition={{ duration: 0.5 }}
+                  onClick={() => goTo(index)}
+                >
+                  <span className="text-gray-400 text-xs font-mono">{String(item.id).padStart(2, '0')}</span>
+                  <div>
+                    <p className="text-white text-sm font-bold leading-tight">{item.title}</p>
+                    <p className="text-gray-400 text-xs mt-1">{item.category}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+
+        {/* Right Arrow */}
+        <motion.button
+          className="absolute right-10 max-[800px]:right-2 z-20 w-12 h-12 max-[800px]:w-8 max-[800px]:h-8 flex items-center justify-center rounded-full cursor-pointer text-white text-2xl max-[800px]:text-base"
+          style={glassStyle}
+          onClick={() => goTo((currentIndex + 1) % quantity)}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <IoChevronForward />
+        </motion.button>
       </div>
 
-      {/* Left Arrow */}
-      <motion.button
-        className="absolute left-10 max-[800px]:left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 max-[800px]:w-8 max-[800px]:h-8 flex items-center justify-center rounded-full cursor-pointer text-white text-2xl max-[800px]:text-base"
-        style={{
-          background: 'rgba(255, 255, 255, 0.1)',
-          backdropFilter: 'blur(10px)',
-          WebkitBackdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255, 255, 255, 0.3)',
-        }}
-        onClick={goToPrev}
-        whileHover={{ scale: 1.1, background: 'rgba(255, 255, 255, 0.25)' }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <IoChevronBack />
-      </motion.button>
-
-      {/* Right Arrow */}
-      <motion.button
-        className="absolute right-10 max-[800px]:right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 max-[800px]:w-8 max-[800px]:h-8 flex items-center justify-center rounded-full cursor-pointer text-white text-2xl max-[800px]:text-base"
-        style={{
-          background: 'rgba(255, 255, 255, 0.1)',
-          backdropFilter: 'blur(10px)',
-          WebkitBackdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255, 255, 255, 0.3)',
-        }}
-        onClick={goToNext}
-        whileHover={{ scale: 1.1, background: 'rgba(255, 255, 255, 0.25)' }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <IoChevronForward />
-      </motion.button>
-
-      {/* Button at bottom */}
-      <div className="absolute bottom-36 max-[800px]:bottom-28 left-1/2 -translate-x-1/2 z-10 min-h-[50px]">
-        <AnimatePresence>
-          {showContent && (
-            <motion.button
-              className="py-3.5 px-8 max-[800px]:py-2 max-[800px]:px-4 text-base max-[800px]:text-xs font-bold h-10 max-[800px]:h-8 w-40 max-[800px]:w-28 text-white rounded-full cursor-pointer uppercase tracking-wide"
-              style={{
-                background: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.3)',
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
-              }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              whileHover={{
-                scale: 1.05,
-                background: 'rgba(255, 255, 255, 0.25)',
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View More
-            </motion.button>
-          )}
-        </AnimatePresence>
-      </div>
-
-      {/* Navigation indicators */}
-      <div className="absolute bottom-10 max-[800px]:bottom-10 left-1/2 -translate-x-1/2 flex gap-3 max-[800px]:gap-2 z-10">
+      {/* Dots */}
+      <div className="flex gap-3">
         {portfolioItems.map((_, index) => (
           <button
             key={index}
-            className={`w-3 h-3 max-[800px]:w-2 max-[800px]:h-2 rounded-full border-2 max-[800px]:border border-white cursor-pointer transition-colors duration-300 ${
+            className={`w-3 h-3 rounded-full border-2 border-white cursor-pointer transition-colors duration-300 ${
               index === currentIndex ? 'bg-white' : 'bg-transparent'
             }`}
-            onClick={() => {
-              setShowContent(false);
-              setTimeout(() => setCurrentIndex(index), 300);
-            }}
+            onClick={() => goTo(index)}
           />
         ))}
       </div>
