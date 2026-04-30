@@ -7,13 +7,7 @@ import Navbar from '../components/navbar';
 import FooterComponent from '../components/FooterComponent';
 import './page.css';
 
-const categories = [
-  'All',
-  'Web Design',
-  'UX Design',
-  'Development',
-  'Branding',
-];
+const categories = ['All', 'Voice Artistry', 'Brand Marketing'];
 
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -44,7 +38,7 @@ const Portfolio = () => {
             ))}
           </div>
 
-          {/* 2-Column Grid */}
+          {/* Grid */}
           <motion.div layout className="portfolio-grid">
             <AnimatePresence mode="popLayout">
               {filteredItems.map((item) => (
@@ -57,20 +51,46 @@ const Portfolio = () => {
                   transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
                   className="portfolio-card"
                 >
+                  {/* Video player */}
                   <div className="portfolio-img-wrapper">
-                    <img
-                      src={item.image}
-                      alt={item.title}
+                    <video
+                      src={`/api/video/${item.videoId}`}
+                      controls
+                      controlsList="nodownload"
+                      disablePictureInPicture
+                      onContextMenu={(e) => e.preventDefault()}
                       className="portfolio-img"
+                      style={{ objectFit: 'contain', background: '#000' }}
                     />
-                    <div className="portfolio-overlay">
-                      <span>View Project</span>
-                    </div>
                   </div>
 
+                  {/* Project details */}
                   <div className="portfolio-details">
                     <p className="item-category">{item.category}</p>
                     <h3 className="item-title">{item.title}</h3>
+                    <p className="item-subtitle">{item.subtitle}</p>
+                    <p className="item-description">{item.description}</p>
+
+                    <div className="item-tags">
+                      {item.tags.map((tag) => (
+                        <span key={tag} className="item-tag">{tag}</span>
+                      ))}
+                    </div>
+
+                    <div className="item-meta">
+                      <div className="meta-row">
+                        <span className="meta-label">Client</span>
+                        <span className="meta-value">{item.client}</span>
+                      </div>
+                      <div className="meta-row">
+                        <span className="meta-label">Year</span>
+                        <span className="meta-value">{item.year}</span>
+                      </div>
+                      <div className="meta-row">
+                        <span className="meta-label">Services</span>
+                        <span className="meta-value">{item.services.join(' · ')}</span>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               ))}

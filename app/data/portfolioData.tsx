@@ -1,12 +1,41 @@
-export const portfolioItems = [
-  { id: 1, image: '/images/img-1.jpeg', title: 'Project One', category: 'Web Design' },
-  { id: 2, image: '/images/img-2.jpeg', title: 'Project Two', category: 'UX Design' },
-  { id: 3, image: '/images/img-3.jpeg', title: 'Project Three', category: 'Development' },
-  { id: 4, image: '/images/img-4.jpeg', title: 'Project Four', category: 'Branding' },
-  { id: 5, image: '/images/img-1.jpeg', title: 'Project Five', category: 'Web Design' },
-  { id: 6, image: '/images/img-2.jpeg', title: 'Project Six', category: 'UX Design' },
-  { id: 7, image: '/images/img-3.jpeg', title: 'Project Seven', category: 'Development' },
-  { id: 8, image: '/images/img-4.jpeg', title: 'Project Eight', category: 'Branding' },
-  { id: 9, image: '/images/img-1.jpeg', title: 'Project Nine', category: 'Web Design' },
-  { id: 10, image: '/images/img-2.jpeg', title: 'Project Ten', category: 'Development' },
+export interface PortfolioItem {
+  id: number;
+  videoId: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  category: string;
+  client: string;
+  services: string[];
+  tags: string[];
+  year: string;
+}
+
+export const portfolioItems: PortfolioItem[] = [
+  {
+    id: 1,
+    videoId: 1,
+    title: 'Voice Over Poem',
+    subtitle: 'Fast Paced Edits',
+    description:
+      'A spoken word piece brought to life through rapid-fire editing. Every cut lands on beat, every transition amplifies the emotion — turning a poem into a visual experience that hits as hard as it sounds.',
+    category: 'Voice Artistry',
+    client: 'Personal Work',
+    services: ['Video Editing', 'Voice Artistry', 'Sound Design'],
+    tags: ['Voice Over', 'Fast Paced Cuts', 'Spoken Word', 'Creative Editing'],
+    year: '2024',
+  },
+  {
+    id: 2,
+    videoId: 2,
+    title: 'Chemical Studios',
+    subtitle: 'Product Teaser with Motion Graphics',
+    description:
+      'A high-energy brand marketing video for Chemical Studios — built around kinetic motion graphics, sharp transitions, and a visual identity that commands attention. Designed to move product and move people.',
+    category: 'Brand Marketing',
+    client: 'Chemical Studios',
+    services: ['Video Editing', 'Motion Graphics', 'Brand Marketing'],
+    tags: ['Motion Graphics', 'Brand Video', 'Product Teaser', 'Marketing'],
+    year: '2024',
+  },
 ];
