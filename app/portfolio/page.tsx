@@ -51,13 +51,17 @@ const Portfolio = () => {
                   transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
                   className="portfolio-card"
                 >
-                  {/* Project visual */}
-                  <div className="portfolio-img-wrapper project-card-visual">
-                    <div className="project-card-inner">
-                      <span className="project-number">{String(item.id).padStart(2, '0')}</span>
-                      <h3 className="project-card-title">{item.title}</h3>
-                      <span className="project-card-subtitle">{item.subtitle}</span>
-                    </div>
+                  {/* Video player */}
+                  <div className="portfolio-img-wrapper">
+                    <video
+                      src={item.videoSrc}
+                      controls
+                      controlsList="nodownload"
+                      disablePictureInPicture
+                      onContextMenu={(e) => e.preventDefault()}
+                      className="portfolio-img"
+                      style={{ objectFit: 'contain', background: '#000' }}
+                    />
                   </div>
 
                   {/* Project details */}

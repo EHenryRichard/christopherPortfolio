@@ -65,30 +65,20 @@ const Portfolio = () => {
         <span className="text-gray-500 text-sm uppercase tracking-widest">Selected Projects</span>
       </div>
 
-      {/* Active project card */}
+      {/* Active project */}
       <div className="w-full max-w-5xl flex flex-col gap-6">
-        {/* Project visual card */}
-        <div
-          className="w-full rounded-2xl overflow-hidden flex items-center justify-center"
-          style={{ ...glassStyle, minHeight: '280px', boxShadow: '0 8px 40px rgba(0,0,0,0.5)' }}
-        >
-          <div className="flex flex-col items-center justify-center gap-4 py-16 px-8 text-center">
-            <span className="text-gray-500 text-xs font-mono uppercase tracking-widest">
-              Project {String(currentItem.id).padStart(2, '0')}
-            </span>
-            <h3 className="text-white text-4xl max-[800px]:text-2xl font-bold uppercase">
-              {currentItem.title}
-            </h3>
-            <span className="text-red-400 text-sm uppercase tracking-widest">
-              {currentItem.subtitle}
-            </span>
-            <span
-              className="text-xs text-white uppercase tracking-wider px-4 py-1.5 rounded-full mt-2"
-              style={glassStyle}
-            >
-              {currentItem.category}
-            </span>
-          </div>
+        {/* Video player */}
+        <div className="w-full rounded-2xl overflow-hidden" style={{ ...glassStyle, boxShadow: '0 8px 40px rgba(0,0,0,0.5)' }}>
+          <video
+            key={currentItem.videoSrc}
+            src={currentItem.videoSrc}
+            controls
+            controlsList="nodownload"
+            disablePictureInPicture
+            onContextMenu={(e) => e.preventDefault()}
+            className="w-full block"
+            style={{ maxHeight: '480px', objectFit: 'contain', background: '#000' }}
+          />
         </div>
 
         {/* Project info */}

@@ -1,6 +1,7 @@
 export interface PortfolioItem {
   id: number;
   videoId: number;
+  videoSrc: string;
   title: string;
   subtitle: string;
   description: string;
@@ -15,6 +16,7 @@ export const portfolioItems: PortfolioItem[] = [
   {
     id: 1,
     videoId: 1,
+    videoSrc: '/videos/project-01.mp4',
     title: 'Voice Over Poem',
     subtitle: 'Fast Paced Edits',
     description:
@@ -28,6 +30,7 @@ export const portfolioItems: PortfolioItem[] = [
   {
     id: 2,
     videoId: 2,
+    videoSrc: '/videos/project-02.mp4',
     title: 'Chemical Studios',
     subtitle: 'Product Teaser with Motion Graphics',
     description:
