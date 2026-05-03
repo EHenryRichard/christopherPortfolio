@@ -2,7 +2,7 @@ export const carouselData = [
   {
     id: 1,
     image: '/images/img-1.jpeg',
-    author: 'Narrative by Topher',
+    author: 'Narratives by Topher',
     title: 'Creative',
     topic: 'Editor',
     description:
@@ -11,7 +11,7 @@ export const carouselData = [
   {
     id: 2,
     image: '/images/img-2.jpeg',
-    author: 'Narrative by Topher',
+    author: 'Narratives by Topher',
     title: 'Brand',
     topic: 'Identity',
     description:
@@ -20,7 +20,7 @@ export const carouselData = [
   {
     id: 3,
     image: '/images/img-3.jpeg',
-    author: 'Narrative by Topher',
+    author: 'Narratives by Topher',
     title: 'Visual',
     topic: 'Storytelling',
     description:
@@ -29,7 +29,7 @@ export const carouselData = [
   {
     id: 4,
     image: '/images/img-4.jpeg',
-    author: 'Narrative by Topher',
+    author: 'Narratives by Topher',
     title: 'Digital',
     topic: 'Experience',
     description:

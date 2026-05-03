@@ -162,6 +162,7 @@ function PortfolioInner() {
                   className="portfolio-card"
                   onClick={() => router.push(`/portfolio/${item.id}`)}
                 >
+                  {/* Video player */}
                   <div className="portfolio-img-wrapper">
                     <img src={item.thumbnail ?? '/images/img-1.jpeg'} alt={item.title} className="portfolio-img" />
                     <div className="portfolio-overlay">
@@ -175,6 +176,29 @@ function PortfolioInner() {
                       {[item.category, item.year].filter(Boolean).join(' · ')}
                     </p>
                     <h3 className="item-title">{item.title}</h3>
+                    <p className="item-subtitle">{item.subtitle}</p>
+                    <p className="item-description">{item.description}</p>
+
+                    <div className="item-tags">
+                      {item.tags.map((tag) => (
+                        <span key={tag} className="item-tag">{tag}</span>
+                      ))}
+                    </div>
+
+                    <div className="item-meta">
+                      <div className="meta-row">
+                        <span className="meta-label">Client</span>
+                        <span className="meta-value">{item.client}</span>
+                      </div>
+                      <div className="meta-row">
+                        <span className="meta-label">Year</span>
+                        <span className="meta-value">{item.year}</span>
+                      </div>
+                      <div className="meta-row">
+                        <span className="meta-label">Services</span>
+                        <span className="meta-value">{item.services.join(' · ')}</span>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               ))}

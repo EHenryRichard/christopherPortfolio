@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { IoMenu, IoClose } from 'react-icons/io5';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { navigationData, socialData } from '../data/navData';
 import './navbar.css';
 
@@ -14,6 +15,7 @@ const Navbar = () => {
   const [time, setTime] = useState(new Date());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('Home');
+  const router = useRouter();
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
@@ -109,6 +111,7 @@ const Navbar = () => {
             className="contact-btn"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
+            onClick={() => router.push('/contact')}
           >
             contact now
           </MotionLink>
@@ -155,6 +158,7 @@ const Navbar = () => {
                 className="contact-btn"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={() => { setIsMenuOpen(false); router.push('/contact'); }}
               >
                 contact now
               </MotionLink>
@@ -188,7 +192,7 @@ const Navbar = () => {
               initial="hidden"
               animate="visible"
             >
-              <div className="rights">©2025 Narrative by Topher</div>
+              <div className="rights">©2025 Narratives by Topher</div>
               <div className="socials">
                 <ul>
                   {socialData.map((social, index) => (

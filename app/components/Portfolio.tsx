@@ -22,6 +22,7 @@ const Portfolio = () => {
   const [radius, setRadius] = useState(340);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showContent, setShowContent] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     fetch(API)

@@ -97,7 +97,7 @@
 /* carousel thumbnail */
 .carousel .thumbnail {
   position: absolute;
-  bottom: 50px;
+  bottom: 110px;
   left: 50%;
   width: max-content;
   z-index: 10;
@@ -348,7 +348,7 @@
 
   /* Make thumbnails visible and scrollable on mobile */
   .carousel .thumbnail {
-    bottom: 20px;
+    bottom: 80px;
     left: 0;
     right: 0;
     transform: none !important;
@@ -373,7 +373,7 @@
   /* Adjust arrows position for mobile */
   .carousel .arrows {
     top: auto;
-    bottom: 250px;
+    bottom: 310px;
     right: 50%;
     transform: translateX(calc(50% + 40px));
     width: 100px;
@@ -406,8 +406,7 @@
 /* Specific fix for iPhone 14 Pro and similar sized devices */
 @media screen and (min-width: 375px) and (max-width: 430px) {
   .carousel .arrows {
-    bottom: 213px;
-
+    bottom: 273px;
     transform: translateX(calc(50% + 20px));
   }
 }
