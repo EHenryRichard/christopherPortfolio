@@ -3,16 +3,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 
-export async function generateStaticParams() {
-  try {
-    const res = await fetch('https://api.narrativesbytopher.com/api/get-portfolio.php');
-    if (!res.ok) return [];
-    const items = await res.json() as { id: string }[];
-    return items.filter(i => i.id).map(i => ({ id: String(i.id) }));
-  } catch {
-    return [];
-  }
-}
 import Link from 'next/link';
 import CustomVideoPlayer from '../../components/CustomVideoPlayer';
 import './page.css';
