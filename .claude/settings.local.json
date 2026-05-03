@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git config *)",
+      "PowerShell(Test-NetConnection -ComputerName github.com -Port 443)",
+      "Bash(curl -v --max-time 10 https://github.com)",
+      "Bash(ssh -T -o ConnectTimeout=8 git@github.com)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(mkdir -p ~/.ssh)",
+      "Bash(ssh-keyscan -H github.com)",
+      "Bash(ssh-keygen -t ed25519 -C \"henryrichardemzy@gmail.com\" -f ~/.ssh/id_ed25519 -N \"\")",
+      "Bash(ssh -T git@github.com)",
+      "Bash(git remote *)",
+      "Bash(git pull *)"
+    ]
+  }
+}

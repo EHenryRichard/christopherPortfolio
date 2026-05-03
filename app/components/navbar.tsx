@@ -104,13 +104,14 @@ const Navbar = () => {
               <IoMenu />
             </motion.div>
           </div>
-          <motion.button
+          <MotionLink
+            href="/contact"
             className="contact-btn"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
             contact now
-          </motion.button>
+          </MotionLink>
         </nav>
       </header>
 
@@ -149,13 +150,14 @@ const Navbar = () => {
                   </motion.div>
                 </motion.div>
               </div>
-              <motion.button
+              <MotionLink
+                href="/contact"
                 className="contact-btn"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 contact now
-              </motion.button>
+              </MotionLink>
             </motion.div>
 
             <ul className="list">

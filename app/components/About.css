@@ -10,14 +10,14 @@
   background-size: 8px 8px;
   background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
   background-attachment: fixed;
-  padding: 140px 50px;
+  padding: 140px 50px 250px;
   box-sizing: border-box;
   color: #fff;
 }
 
 .about-main-container {
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 33 auto;
 }
 
 /* === Dual Column Header Grid === */

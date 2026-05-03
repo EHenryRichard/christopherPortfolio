@@ -1,0 +1,226 @@
+.portfolio-detail-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 118px 24px 80px;
+  color: #fff;
+  scroll-padding-top: 150px;
+}
+
+.portfolio-detail-shell {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.portfolio-detail-back {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 18px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.portfolio-detail-back:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.portfolio-detail-header {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.portfolio-detail-header h1 {
+  max-width: 980px;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 4.8rem);
+  font-weight: 900;
+  line-height: 0.94;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.portfolio-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.meta-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 180ms ease, border-color 180ms ease,
+              color 180ms ease, transform 180ms ease;
+}
+
+.meta-tag:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.34);
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Featured badge */
+.detail-featured-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(255, 215, 0, 0.12);
+  border: 1px solid rgba(255, 215, 0, 0.35);
+  color: #ffd700;
+  margin-bottom: 8px;
+}
+
+/* Subtitle */
+.detail-subtitle {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* NDA locked state */
+.nda-locked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 80px 40px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  text-align: center;
+}
+
+.nda-lock-icon { font-size: 2.5rem; }
+
+.nda-lock-title {
+  margin: 0;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.nda-lock-sub {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+  max-width: 440px;
+  line-height: 1.6;
+}
+
+/* Services + Tags */
+.detail-extra-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.detail-meta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-meta-label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 700;
+}
+
+.detail-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.detail-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.portfolio-detail-description {
+  max-width: 820px;
+  padding-top: 6px;
+}
+
+.portfolio-detail-description p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-weight: 600;
+  line-height: 1.8;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+@media (max-width: 700px) {
+  .portfolio-detail-page {
+    padding: 96px 14px 56px;
+  }
+
+  .portfolio-detail-shell {
+    gap: 22px;
+  }
+
+  .portfolio-detail-header {
+    gap: 14px;
+  }
+
+  .portfolio-detail-meta a {
+    min-height: 28px;
+    font-size: 0.64rem;
+  }
+}

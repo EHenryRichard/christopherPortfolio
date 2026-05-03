@@ -73,6 +73,10 @@ header .navbar .contact-btn {
   cursor: pointer;
   z-index: 1;
   justify-self: end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 header .navbar .contact-btn::before {
@@ -204,6 +208,10 @@ header .navbar .menu {
   cursor: pointer;
   z-index: 1;
   justify-self: end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .nav-container .navbar .contact-btn::before {

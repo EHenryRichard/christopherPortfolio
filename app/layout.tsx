@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Chris Portfolio',
+  title: 'Narratives By Topher',
   description: 'Personal portfolio showcasing my work and experience',
 };
 

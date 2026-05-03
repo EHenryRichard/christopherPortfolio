@@ -11,11 +11,58 @@
   margin: 0 auto;
 }
 
-/* === Filter Bar === */
+/* === Toolbar === */
+.portfolio-toolbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 40px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.portfolio-search {
+  flex: 1;
+  min-width: 200px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 0.8rem;
+  font-family: inherit;
+  letter-spacing: 0.05em;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.portfolio-search::placeholder { color: rgba(255, 255, 255, 0.3); }
+.portfolio-search:focus {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.portfolio-sort {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 10px 20px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.75rem;
+  font-family: inherit;
+  letter-spacing: 0.05em;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.portfolio-sort:focus { border-color: rgba(255, 255, 255, 0.3); }
+.portfolio-sort option { background: #1a1a1d; color: #fff; }
+
+/* === Category filter bar === */
 .portfolio-filter-bar {
   display: flex;
   gap: 40px;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   padding-bottom: 15px;
   flex-wrap: wrap;
@@ -38,40 +85,139 @@
   transition: color 0.3s ease;
 }
 
-.filter-item.active .filter-text {
-  color: #fff;
-}
+.filter-item.active .filter-text { color: #fff; }
 
 .filter-underline {
   position: absolute;
-  bottom: -16px; /* Sits exactly on the border-bottom */
+  bottom: -16px;
   left: 0;
   width: 100%;
   height: 2px;
   background-color: #fff;
 }
 
-/* === Grid: 2 Columns Wide === */
+/* === Year pills === */
+.portfolio-year-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.year-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 5px 14px;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.68rem;
+  font-family: inherit;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.year-pill:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.year-pill.active {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+
+/* === Active filter chip + count === */
+.portfolio-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 60px;
+  min-height: 30px;
+  flex-wrap: wrap;
+}
+
+.active-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 5px 14px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.68rem;
+  font-family: inherit;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.active-filter-chip:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.chip-x { font-size: 1rem; line-height: 1; opacity: 0.6; }
+
+.portfolio-count {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.3);
+  margin-left: auto;
+}
+
+/* === Grid === */
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 80px 40px; /* Large vertical gap for text */
+  gap: 80px 40px;
 }
 
 .portfolio-card {
   display: flex;
   flex-direction: column;
   gap: 25px;
+  cursor: pointer;
 }
 
+.portfolio-loading,
+.portfolio-empty {
+  grid-column: 1 / -1;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio-spinner {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #fff;
+  animation: portfolio-spin 1s linear infinite;
+}
+
+.portfolio-empty {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1rem;
+  margin: 0;
+}
+
+@keyframes portfolio-spin { to { transform: rotate(360deg); } }
+
+/* === Card image === */
 .portfolio-img-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10; /* Wide cinematic ratio */
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   border-radius: 12px;
   background-color: #121214;
-  cursor: pointer;
 }
 
 .portfolio-img {
@@ -81,17 +227,11 @@
   transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* Hover Effects */
-.portfolio-card:hover .portfolio-img {
-  transform: scale(1.05);
-}
+.portfolio-card:hover .portfolio-img { transform: scale(1.05); }
 
 .portfolio-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
@@ -106,18 +246,40 @@
   letter-spacing: 0.1em;
   border: 1px solid #fff;
   padding: 12px 24px;
+  color: #fff;
 }
 
-.portfolio-card:hover .portfolio-overlay {
-  opacity: 1;
+.portfolio-card:hover .portfolio-overlay { opacity: 1; }
+
+.featured-badge,
+.nda-badge {
+  position: absolute;
+  top: 12px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  pointer-events: none;
 }
 
-/* === Typography Below Image === */
-.portfolio-details {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.featured-badge {
+  left: 12px;
+  background: rgba(255, 215, 0, 0.15);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  color: #ffd700;
 }
+
+.nda-badge {
+  right: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* === Card text === */
+.portfolio-details { display: flex; flex-direction: column; gap: 8px; }
 
 .item-category {
   font-size: 0.6rem;
@@ -136,12 +298,11 @@
   letter-spacing: -0.01em;
 }
 
-/* === Mobile Adjustments === */
+/* === Mobile === */
 @media (max-width: 900px) {
-  .portfolio-grid {
-    grid-template-columns: 1fr; /* Stack on mobile */
-  }
-  .portfolio-section {
-    padding: 80px 20px;
-  }
+  .portfolio-section    { padding: 80px 20px; }
+  .portfolio-grid       { grid-template-columns: 1fr; }
+  .portfolio-filter-bar { gap: 20px; }
+  .portfolio-toolbar    { flex-direction: column; align-items: stretch; }
+  .portfolio-search     { min-width: unset; }
 }
